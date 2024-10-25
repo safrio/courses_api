@@ -1,0 +1,588 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/authors":
+    get:
+      summary: Retrieves a authors
+      responses:
+        '200':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                    created_at:
+                      type: string
+                  required:
+                  - id
+                  - name
+                  - created_at
+                required:
+                - id
+                - name
+                - created_at
+    post:
+      summary: Create one author
+      parameters: []
+      responses:
+        '201':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  created_at:
+                    type: string
+                required:
+                - id
+                - name
+                - created_at
+        '500':
+          description: error with empty name
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+  "/api/v1/authors/{id}":
+    get:
+      summary: Retrieves one author
+      parameters:
+      - name: id
+        in: path
+        description: UUID
+        format: uuid
+        required: true
+        schema:
+          type: id
+      responses:
+        '200':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  created_at:
+                    type: string
+                required:
+                - id
+                - name
+                - created_at
+        '404':
+          description: not found
+    patch:
+      summary: Update one author
+      parameters:
+      - name: id
+        in: path
+        description: UUID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  created_at:
+                    type: string
+                required:
+                - id
+                - name
+                - created_at
+        '500':
+          description: error with empty name
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+    delete:
+      summary: Destroy one author
+      parameters:
+      - name: id
+        in: path
+        description: UUID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                required:
+                - status
+        '404':
+          description: not found
+  "/api/v1/competencies":
+    get:
+      summary: Retrieves a competences
+      responses:
+        '200':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                    created_at:
+                      type: string
+                  required:
+                  - id
+                  - name
+                  - created_at
+                required:
+                - id
+                - name
+                - created_at
+    post:
+      summary: Create one competence
+      parameters: []
+      responses:
+        '201':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  created_at:
+                    type: string
+                required:
+                - id
+                - name
+                - created_at
+        '500':
+          description: error with empty name
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+  "/api/v1/competencies/{id}":
+    get:
+      summary: Retrieves one competence
+      parameters:
+      - name: id
+        in: path
+        description: UUID
+        format: uuid
+        required: true
+        schema:
+          type: id
+      responses:
+        '200':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  created_at:
+                    type: string
+                required:
+                - id
+                - name
+                - created_at
+        '404':
+          description: not found
+    patch:
+      summary: Update one competence
+      parameters:
+      - name: id
+        in: path
+        description: UUID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  created_at:
+                    type: string
+                required:
+                - id
+                - name
+                - created_at
+        '500':
+          description: error with empty name
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+    delete:
+      summary: Destroy one competence
+      parameters:
+      - name: id
+        in: path
+        description: UUID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  created_at:
+                    type: string
+                required:
+                - id
+                - name
+                - created_at
+        '404':
+          description: not found
+  "/api/v1/courses":
+    get:
+      summary: Retrieves an courses
+      responses:
+        '200':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                    created_at:
+                      type: string
+                    author:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        name:
+                          type: string
+                        created_at:
+                          type: string
+                    competences:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            format: uuid
+                          name:
+                            type: string
+                          created_at:
+                            type: string
+                  required:
+                  - id
+                  - name
+                  - created_at
+                  - author
+                  - competences
+                required:
+                - id
+                - name
+                - created_at
+                - author
+                - competences
+    post:
+      summary: Create one course
+      parameters: []
+      responses:
+        '201':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  created_at:
+                    type: string
+                  author:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      name:
+                        type: string
+                      created_at:
+                        type: string
+                  competences:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        name:
+                          type: string
+                        created_at:
+                          type: string
+                required:
+                - id
+                - name
+                - created_at
+                - author
+                - competences
+        '500':
+          description: error with empty author
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+  "/api/v1/courses/{id}":
+    get:
+      summary: Retrieves one course
+      parameters:
+      - name: id
+        in: path
+        description: UUID
+        format: uuid
+        required: true
+        schema:
+          type: id
+      responses:
+        '200':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  created_at:
+                    type: string
+                  author:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      name:
+                        type: string
+                      created_at:
+                        type: string
+                  competences:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        name:
+                          type: string
+                        created_at:
+                          type: string
+                required:
+                - id
+                - name
+                - created_at
+                - author
+                - competences
+        '404':
+          description: not found
+    patch:
+      summary: Update one course
+      parameters:
+      - name: id
+        in: path
+        description: UUID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful request without competences
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  created_at:
+                    type: string
+                  author:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      name:
+                        type: string
+                      created_at:
+                        type: string
+                  competences:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        name:
+                          type: string
+                        created_at:
+                          type: string
+                required:
+                - id
+                - name
+                - created_at
+                - author
+                - competences
+        '500':
+          description: error with empty author
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+    delete:
+      summary: Destroy one course
+      parameters:
+      - name: id
+        in: path
+        description: UUID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  created_at:
+                    type: string
+                  author:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      name:
+                        type: string
+                      created_at:
+                        type: string
+                  competences:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        name:
+                          type: string
+                        created_at:
+                          type: string
+                required:
+                - id
+                - name
+                - created_at
+                - author
+                - competences
+        '404':
+          description: not found
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
