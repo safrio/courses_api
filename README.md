@@ -1,5 +1,8 @@
 `docker compose up`
 
+Документация API:
+http://localhost:3000/api-docs/index.html
+
 ---
 
 # Тестовое задание
