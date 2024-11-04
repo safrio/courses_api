@@ -31,7 +31,6 @@ describe 'Competences API', type: :request, swagger_doc: 'v1/swagger.yaml' do
       produces 'application/json'
       parameter name: :id, in: :path, type: :id, description: 'UUID', format: 'uuid'
       response '200', 'successful request' do
-
         schema item_schema
         let(:id) { Competence.create(name: 'foo').id }
 
@@ -48,7 +47,7 @@ describe 'Competences API', type: :request, swagger_doc: 'v1/swagger.yaml' do
 
   path '/api/v1/competencies' do
     post 'Create one competence' do
-     consumes 'multipart/form-data'
+      consumes 'multipart/form-data'
       produces 'application/json'
       parameter name: 'name', in: :formData, type: :string
 
@@ -70,7 +69,7 @@ describe 'Competences API', type: :request, swagger_doc: 'v1/swagger.yaml' do
 
   path '/api/v1/competencies/{id}' do
     patch 'Update one competence' do
-     consumes 'multipart/form-data'
+      consumes 'multipart/form-data'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string, description: 'UUID'
       parameter name: 'name', in: :formData, type: :string
@@ -95,7 +94,7 @@ describe 'Competences API', type: :request, swagger_doc: 'v1/swagger.yaml' do
 
   path '/api/v1/competencies/{id}' do
     delete 'Destroy one competence' do
-     consumes 'multipart/form-data'
+      consumes 'multipart/form-data'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string, description: 'UUID'
 

@@ -12,7 +12,6 @@ class RemoveAuthor < ApplicationInteractor
   end
 
   private
-
   def new_author
     @new_author ||= Author.where.not(id: author.id).sample
   end

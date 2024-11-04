@@ -28,7 +28,6 @@ class Api::V1::CoursesController < Api::ApiController
   end
 
   private
-
   def course
     @course ||= Course.find(params[:id])
   end

@@ -31,7 +31,6 @@ describe 'Authors API', type: :request, swagger_doc: 'v1/swagger.yaml' do
       produces 'application/json'
       parameter name: :id, in: :path, type: :id, description: 'UUID', format: 'uuid'
       response '200', 'successful request' do
-
         schema item_schema
 
         let(:id) { Author.create(name: 'foo').id }
@@ -49,8 +48,8 @@ describe 'Authors API', type: :request, swagger_doc: 'v1/swagger.yaml' do
 
   path '/api/v1/authors' do
     post 'Create one author' do
-     consumes "multipart/form-data"
-      produces "application/json"
+      consumes 'multipart/form-data'
+      produces 'application/json'
       parameter name: 'name', in: :formData, type: :string
 
       response '201', 'successful request' do
@@ -71,8 +70,8 @@ describe 'Authors API', type: :request, swagger_doc: 'v1/swagger.yaml' do
 
   path '/api/v1/authors/{id}' do
     patch 'Update one author' do
-     consumes "multipart/form-data"
-      produces "application/json"
+      consumes 'multipart/form-data'
+      produces 'application/json'
       parameter name: :id, in: :path, type: :string, description: 'UUID'
       parameter name: 'name', in: :formData, type: :string
 
@@ -95,8 +94,8 @@ describe 'Authors API', type: :request, swagger_doc: 'v1/swagger.yaml' do
 
   path '/api/v1/authors/{id}' do
     delete 'Destroy one author' do
-     consumes "multipart/form-data"
-      produces "application/json"
+      consumes 'multipart/form-data'
+      produces 'application/json'
       parameter name: :id, in: :path, type: :string, description: 'UUID'
 
       response '200', 'successful request' do

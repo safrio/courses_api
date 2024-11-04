@@ -34,7 +34,6 @@ class Api::V1::AuthorsController < Api::ApiController
   end
 
   private
-
   def author
     @author ||= Author.find(params[:id])
   end

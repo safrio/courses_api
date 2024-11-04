@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 TORAL_COMPETENCES_COUNT = 5
 TOTAL_AUTHORS_COUNT = 5
 AUTHOR_HAS_COURSES_COUNT = 2

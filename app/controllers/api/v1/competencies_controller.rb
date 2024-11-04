@@ -28,7 +28,6 @@ class Api::V1::CompetenciesController < Api::ApiController
   end
 
   private
-
   def competence
     @competence ||= Competence.find(params[:id])
   end

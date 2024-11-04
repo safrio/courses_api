@@ -12,13 +12,13 @@ item_schema = {
               properties: {
                 id:         { type: :string, format: :uuid },
                 name:       { type: :string },
-                created_at: { type: :string }}},
+                created_at: { type: :string } } },
     competences: { type: :array,
                    items: { type: :object,
                             properties: {
                               id:         { type: :string, format: :uuid },
                               name:       { type: :string },
-                              created_at: { type: :string }}}},
+                              created_at: { type: :string } } } },
   },
   required: %i(id name created_at author competences)
 }
@@ -42,7 +42,6 @@ describe 'Authors API', type: :request, swagger_doc: 'v1/swagger.yaml' do
       produces 'application/json'
       parameter name: :id, in: :path, type: :id, description: 'UUID', format: 'uuid'
       response '200', 'successful request' do
-
         schema item_schema
 
         let(:id) { Course.create(name: 'foo', author: Author.first).id }
@@ -60,7 +59,7 @@ describe 'Authors API', type: :request, swagger_doc: 'v1/swagger.yaml' do
 
   path '/api/v1/courses' do
     post 'Create one course' do
-     consumes 'multipart/form-data'
+      consumes 'multipart/form-data'
       produces 'application/json'
       parameter name: 'name', in: :formData, type: :string
       parameter name: 'author_id', in: :formData, type: :string
@@ -95,7 +94,7 @@ describe 'Authors API', type: :request, swagger_doc: 'v1/swagger.yaml' do
 
   path '/api/v1/courses/{id}' do
     patch 'Update one course' do
-     consumes 'multipart/form-data'
+      consumes 'multipart/form-data'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string, description: 'UUID'
       parameter name: 'name', in: :formData, type: :string
@@ -142,7 +141,7 @@ describe 'Authors API', type: :request, swagger_doc: 'v1/swagger.yaml' do
 
   path '/api/v1/courses/{id}' do
     delete 'Destroy one course' do
-     consumes 'multipart/form-data'
+      consumes 'multipart/form-data'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string, description: 'UUID'
 
