@@ -23,6 +23,16 @@ item_schema = {
   required: %i(id name created_at author competences)
 }
 
+params_schema = {
+  type: :object,
+  properties: {
+    name: { type: :string },
+    author_id: { type: :string },
+    'course_competences_attributes[][competence_id]': { type: :array, items: {  type: :string } }
+  },
+  required: [ 'name', 'author_id' ]
+}
+
 describe 'Authors API', type: :request, swagger_doc: 'v1/swagger.yaml' do
   path '/api/v1/courses' do
     get 'Retrieves an courses' do
@@ -61,9 +71,9 @@ describe 'Authors API', type: :request, swagger_doc: 'v1/swagger.yaml' do
     post 'Create one course' do
       consumes 'multipart/form-data'
       produces 'application/json'
-      parameter name: 'name', in: :formData, type: :string
-      parameter name: 'author_id', in: :formData, type: :string
-      parameter name: 'course_competences_attributes[]', in: :formData, explode: true, schema: { type: :array, items: { type: :string } }
+      parameter name: 'name', in: :formData, schema: params_schema
+      parameter name: 'author_id', in: :formData, schema: params_schema
+      parameter name: 'course_competences_attributes[]', in: :formData, schema: params_schema
 
       let('course_competences_attributes[]') { [Competence.first.id, Competence.second.id] }
 
@@ -97,9 +107,9 @@ describe 'Authors API', type: :request, swagger_doc: 'v1/swagger.yaml' do
       consumes 'multipart/form-data'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string, description: 'UUID'
-      parameter name: 'name', in: :formData, type: :string
-      parameter name: 'author_id', in: :formData, type: :string
-      parameter name: 'course_competences_attributes[]', in: :formData, explode: true, schema: { type: :array, items: { type: :string } }
+      parameter name: 'name', in: :formData, schema: params_schema
+      parameter name: 'author_id', in: :formData, schema: params_schema
+      parameter name: 'course_competences_attributes[]', in: :formData, schema: params_schema
 
       let(:id) { Course.create(name: 'foo', author: Author.first).id }
       let('course_competences_attributes[]') { [Competence.first.id, Competence.second.id] }

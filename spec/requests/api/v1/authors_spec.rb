@@ -13,6 +13,14 @@ describe 'Authors API', type: :request, swagger_doc: 'v1/swagger.yaml' do
     required: %i(id name created_at)
   }
 
+  param_schema = {
+    type: :object,
+    properties: {
+      name: { type: :string, description: 'name' },
+    },
+    required: [ 'name' ]
+  }
+
   path '/api/v1/authors' do
     get 'Retrieves a authors' do
       produces 'application/json'
@@ -50,7 +58,7 @@ describe 'Authors API', type: :request, swagger_doc: 'v1/swagger.yaml' do
     post 'Create one author' do
       consumes 'multipart/form-data'
       produces 'application/json'
-      parameter name: 'name', in: :formData, type: :string
+      parameter name: 'name', in: :formData, type: :string, schema: param_schema
 
       response '201', 'successful request' do
         schema item_schema
@@ -73,7 +81,7 @@ describe 'Authors API', type: :request, swagger_doc: 'v1/swagger.yaml' do
       consumes 'multipart/form-data'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string, description: 'UUID'
-      parameter name: 'name', in: :formData, type: :string
+      parameter name: 'name', in: :formData, type: :string, schema: param_schema
 
       let(:id) { Author.create(name: 'foo').id }
 

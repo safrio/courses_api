@@ -60,7 +60,13 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: string
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: name
+              required:
+              - name
   "/api/v1/authors/{id}":
     get:
       summary: Retrieves one author
@@ -127,7 +133,13 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: string
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: name
+              required:
+              - name
     delete:
       summary: Destroy one author
       parameters:
@@ -207,7 +219,13 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: string
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: name
+              required:
+              - name
   "/api/v1/competencies/{id}":
     get:
       summary: Retrieves one competence
@@ -274,7 +292,13 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: string
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: name
+              required:
+              - name
     delete:
       summary: Destroy one competence
       parameters:
@@ -411,7 +435,19 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: string
+              type: object
+              properties:
+                name:
+                  type: string
+                author_id:
+                  type: string
+                course_competences_attributes[][competence_id]:
+                  type: array
+                  items:
+                    type: string
+              required:
+              - name
+              - author_id
   "/api/v1/courses/{id}":
     get:
       summary: Retrieves one course
@@ -526,7 +562,19 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: string
+              type: object
+              properties:
+                name:
+                  type: string
+                author_id:
+                  type: string
+                course_competences_attributes[][competence_id]:
+                  type: array
+                  items:
+                    type: string
+              required:
+              - name
+              - author_id
     delete:
       summary: Destroy one course
       parameters:

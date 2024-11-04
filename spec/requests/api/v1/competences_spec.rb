@@ -2,17 +2,25 @@
 
 require 'swagger_helper'
 
-item_schema = {
-  type: :object,
-  properties: {
-    id:         { type: :string, format: :uuid },
-    name:       { type: :string },
-    created_at: { type: :string }
-  },
-  required: %i(id name created_at)
-}
-
 describe 'Competences API', type: :request, swagger_doc: 'v1/swagger.yaml' do
+  item_schema = {
+    type: :object,
+    properties: {
+      id:         { type: :string, format: :uuid },
+      name:       { type: :string },
+      created_at: { type: :string }
+    },
+    required: %i(id name created_at)
+  }
+
+  param_schema = {
+    type: :object,
+    properties: {
+      name: { type: :string, description: 'name' },
+    },
+    required: [ 'name' ]
+  }
+
   path '/api/v1/competencies' do
     get 'Retrieves a competences' do
       produces 'application/json'
@@ -49,7 +57,7 @@ describe 'Competences API', type: :request, swagger_doc: 'v1/swagger.yaml' do
     post 'Create one competence' do
       consumes 'multipart/form-data'
       produces 'application/json'
-      parameter name: 'name', in: :formData, type: :string
+      parameter name: 'name', in: :formData, schema: param_schema
 
       response '201', 'successful request' do
         schema item_schema
@@ -72,7 +80,7 @@ describe 'Competences API', type: :request, swagger_doc: 'v1/swagger.yaml' do
       consumes 'multipart/form-data'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string, description: 'UUID'
-      parameter name: 'name', in: :formData, type: :string
+      parameter name: 'name', in: :formData, type: :string, schema: param_schema
 
       let(:id) { Competence.create(name: 'foo').id }
 
